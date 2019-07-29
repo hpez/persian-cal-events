@@ -1,0 +1,27 @@
+{
+    "name": "hpez/persian-cal-event",
+    "description": "Persian (Jalali) calendar events package",
+    "keywords": ["calendar", "jalali", "holiday", "event", "persian"],
+    "license": "DBAD",
+    "authors": [
+        {
+            "name": "Hassan Pezeshk",
+            "email": "hpez58@gmail.com"
+        }
+    ],
+    "type": "project",
+    "require": {
+		"php": ">=7.1",
+        "morilog/jalali": "3.*",
+        "ext-curl": "*",
+        "nesbot/carbon": "^2.21"
+    },
+    "require-dev": {
+		"phpunit/phpunit": "6.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "hpez\\PersianCalEvent\\": "src/"
+        }
+    }
+}
