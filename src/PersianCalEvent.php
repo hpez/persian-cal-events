@@ -27,6 +27,8 @@ class PersianCalEvent
 
         $output = curl_exec($handle);
 
+        echo $output;
+
         curl_close($handle);
 
         if (strpos($output, 'eventHoliday') !== false) {
