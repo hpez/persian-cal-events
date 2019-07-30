@@ -20,16 +20,18 @@ class PersianCalEvent
     {
         $handle = curl_init();
 
-        $url = "http://www.time.ir/fa/event/list/0/$y/$m/$d";
+        $url = "https://www.time.ir/fa/event/list/0/$y/$m/$d";
 
         curl_setopt($handle, CURLOPT_URL, $url);
         curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($handle, CURLOPT_FAILONERROR, true);
+        curl_setopt($handle, CURLOPT_VERBOSE, true);
+        curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, false);
 
         $output = curl_exec($handle);
 
         if (curl_errno($handle)) {
-            print curl_error($handle); die();
+            print curl_error($handle);
         }
 
         curl_close($handle);
