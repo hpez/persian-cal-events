@@ -8,7 +8,7 @@ install: composer update && sudo add-apt-repository -y ppa:ondrej/php &&
   sudo update-ca-certificates &&
   sudo apt install -y curl
 script:
-  - curl google.com
+  - curl https://google.com
   - $TRAVIS_BUILD_DIR/vendor/bin/phpunit $TRAVIS_BUILD_DIR/tests/
   - $TRAVIS_BUILD_DIR/vendor/bin/phpunit --coverage-clover=coverage.xml $TRAVIS_BUILD_DIR/tests/ --whitelist=$TRAVIS_BUILD_DIR/src/
 after_success:
