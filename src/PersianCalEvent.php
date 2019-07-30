@@ -29,7 +29,7 @@ class PersianCalEvent
         $output = curl_exec($handle);
 
         if (curl_errno($handle)) {
-            echo curl_error($handle); die();
+            print curl_error($handle); die();
         }
 
         curl_close($handle);
