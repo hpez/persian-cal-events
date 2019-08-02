@@ -2,7 +2,7 @@
     "name": "hpez/persian-cal-event",
     "description": "Persian (Jalali) calendar events package",
     "keywords": ["calendar", "jalali", "holiday", "event", "persian"],
-    "license": "DBAD",
+    "license": "MIT",
     "authors": [
         {
             "name": "Hassan Pezeshk",
