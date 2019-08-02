@@ -1,5 +1,5 @@
 {
-    "name": "hpez/persian-cal-event",
+    "name": "hpez/persian-cal-events",
     "description": "Persian (Jalali) calendar events package",
     "keywords": ["calendar", "jalali", "holiday", "event", "persian"],
     "license": "MIT",
