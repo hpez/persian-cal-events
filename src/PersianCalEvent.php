@@ -1,7 +1,6 @@
 <?php namespace hpez\PersianCalEvent;
 
 use Carbon\Carbon;
-use Morilog\Jalali\CalendarUtils;
 
 /**
 *
@@ -14,6 +13,7 @@ class PersianCalEvent
      * @param int $y
      * @param int $m
      * @param int $d
+     * @param $type
      * @return \stdClass
      */
     private static function crawl($y, $m, $d, $type)

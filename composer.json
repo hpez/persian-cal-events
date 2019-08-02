@@ -12,7 +12,6 @@
     "type": "project",
     "require": {
 		"php": ">=7.1",
-        "morilog/jalali": "3.*",
         "ext-curl": "*",
         "nesbot/carbon": "^2.21",
         "ext-json": "*"
