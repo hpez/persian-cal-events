@@ -14,7 +14,7 @@ class PersianCalEvent
      * @param int $y
      * @param int $m
      * @param int $d
-     * @return array
+     * @return \stdClass
      */
     private static function crawl($y, $m, $d, $type)
     {
@@ -25,7 +25,6 @@ class PersianCalEvent
         curl_setopt($handle, CURLOPT_URL, $url);
         curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($handle, CURLOPT_FAILONERROR, true);
-        curl_setopt($handle, CURLOPT_VERBOSE, true);
         curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, false);
 
         $output = curl_exec($handle);
@@ -36,33 +35,19 @@ class PersianCalEvent
 
         curl_close($handle);
 
-        if (strpos($output, 'eventHoliday') !== false) {
-            $start = strpos($output, '</span>', strpos($output, 'eventHoliday'));
-            $start += 7;
-            $end = strpos($output, '<span', $start);
-            $cause = substr($output, $start, $end - $start);
-            $cause = str_replace("\n", '', $cause);
-            $cause = str_replace("\r", '', $cause);
-            $cause = str_replace('"', '', $cause);
-            $cause = trim($cause);
-            return ['is_holiday' => true, 'cause' => $cause];
-        }
+        $output = json_decode($output);
 
-        return ['is_holiday' => false];
+        return $output;
     }
 
     /**
      * @param int $y
      * @param int $m
      * @param int $d
-     * @return array
+     * @return \stdClass
      */
     public static function jalali($y, $m, $d)
     {
-        $greg = CalendarUtils::toGregorian($y, $m, $d);
-        if (Carbon::create($greg[0], $greg[1], $greg[2])->dayOfWeek == 5)
-            return ['is_holiday' => true, 'cause' => 'جمعه'];
-
         return self::crawl($y, $m ,$d, 'jalali');
     }
 
@@ -70,7 +55,7 @@ class PersianCalEvent
      * @param int|Carbon $y
      * @param int|null $m
      * @param int|null $d
-     * @return array
+     * @return \stdClass
      */
     public static function gregorian($y, $m = null, $d = null)
     {
@@ -79,9 +64,6 @@ class PersianCalEvent
             $d = $y->day;
             $y = $y->year;
         }
-
-        if (Carbon::create($y, $m, $d)->dayOfWeek == 5)
-            return ['is_holiday' => true, 'cause' => 'جمعه'];
 
         return self::crawl($y, $m, $d, 'gregorian');
     }
