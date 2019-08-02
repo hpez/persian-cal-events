@@ -1,18 +1,18 @@
-#Persian Calendar Events [![codecov](https://codecov.io/gh/hpez/persian-cal-events/branch/master/graph/badge.svg)](https://codecov.io/gh/hpez/persian-cal-events) [![Build Status](https://travis-ci.org/hpez/persian-cal-events.svg?branch=master)](https://travis-ci.org/hpez/persian-cal-events)
+# Persian Calendar Events [![codecov](https://codecov.io/gh/hpez/persian-cal-events/branch/master/graph/badge.svg)](https://codecov.io/gh/hpez/persian-cal-events) [![Build Status](https://travis-ci.org/hpez/persian-cal-events.svg?branch=master)](https://travis-ci.org/hpez/persian-cal-events)
 
 This package aims to provide events for Persian calendar (jalali) crawling time.ir and using [morilog/jalali](https://github.com/morilog/jalali) for conversion.
 
-##Features
+## Features
 
 * Indicates holidays
 * Events in that day
 * Supports both jalali and gregorian
 * Indicates if an event is due to religious reasons
 
-##Installation
+## Installation
     composer require hpez/persian-cal-event
 
-##Usage
+## Usage
     PersianCalEvent::jalali(1398, 1, 1);
     /*
     {
