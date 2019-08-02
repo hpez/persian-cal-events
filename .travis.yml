@@ -2,15 +2,8 @@ language: php
 php:
   - '7.2'
 install: composer update && sudo add-apt-repository -y ppa:ondrej/php &&
-  sudo apt update && sudo apt install -y php7.2-curl &&
-  sudo iptables -A OUTPUT -o eth0 -p tcp --dport 443 -m state --state NEW,ESTABLISHED -j ACCEPT &&
-  sudo iptables -A INPUT -i eth0 -p tcp --sport 443 -m state --state ESTABLISHED -j ACCEPT &&
-  sudo update-ca-certificates &&
-  sudo apt install -y curl &&
-  sudo chmod 777 /etc/resolv.conf &&
-  sudo echo "nameserver 185.51.200.2" >> /etc/resolv.conf
+  sudo apt update && sudo apt install -y php7.2-curl
 script:
-  - curl https://time.ir
   - $TRAVIS_BUILD_DIR/vendor/bin/phpunit $TRAVIS_BUILD_DIR/tests/
   - $TRAVIS_BUILD_DIR/vendor/bin/phpunit --coverage-clover=coverage.xml $TRAVIS_BUILD_DIR/tests/ --whitelist=$TRAVIS_BUILD_DIR/src/
 after_success:

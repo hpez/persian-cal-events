@@ -16,11 +16,11 @@ class PersianCalEvent
      * @param int $d
      * @return array
      */
-    private static function crawl($y, $m, $d)
+    private static function crawl($y, $m, $d, $type)
     {
         $handle = curl_init();
 
-        $url = "https://www.time.ir/fa/event/list/0/$y/$m/$d";
+        $url = "https://persiancalapi.ir/$type/$y/$m/$d";
 
         curl_setopt($handle, CURLOPT_URL, $url);
         curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
@@ -63,7 +63,7 @@ class PersianCalEvent
         if (Carbon::create($greg[0], $greg[1], $greg[2])->dayOfWeek == 5)
             return ['is_holiday' => true, 'cause' => 'جمعه'];
 
-        return self::crawl($y, $m ,$d);
+        return self::crawl($y, $m ,$d, 'jalali');
     }
 
     /**
@@ -83,7 +83,6 @@ class PersianCalEvent
         if (Carbon::create($y, $m, $d)->dayOfWeek == 5)
             return ['is_holiday' => true, 'cause' => 'جمعه'];
 
-        $ymd = CalendarUtils::toJalali($y, $m, $d);
-        return self::crawl($ymd[0], $ymd[1], $ymd[2]);
+        return self::crawl($y, $m, $d, 'gregorian');
     }
 }
